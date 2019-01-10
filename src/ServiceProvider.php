@@ -12,17 +12,17 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->app->bind(Roaring::class, function ($app) {
-			return new Roaring(config('services.roaring.key'), config('services.roaring.secret'));
-		});
+            return new Roaring(config('services.roaring.key'), config('services.roaring.secret'));
+        });
     }
 
     /**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return ['roaring'];
-	}
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['roaring'];
+    }
 }
