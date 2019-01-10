@@ -26,6 +26,12 @@ class Roaring
     private $secret;
 
     /**
+     * The last response
+     * @var mixed
+     */
+    private $response;
+
+    /**
      * Base URL for the API
      * @var string
      */
@@ -41,9 +47,7 @@ class Roaring
         $this->key = $key;
         $this->secret = $secret;
 
-        $this->token = $this->getToken();
-
-        return $this;
+        $this->token = $this->token();
     }
 
     /**
@@ -53,23 +57,23 @@ class Roaring
      * @param  array  $parameters
      * @return stdClass
      */
-    public function get(string $path, array $headers = [], array $parameters = [])
+    public function get(string $path, array $headers = [], array $parameters = []) : Roaring
     {
         if ($this->token) {
             $headers += [
-                'Authorization' => sprintf('Bearer %s', $this->token->access_token)
+                'Authorization' => sprintf('%s %s', $this->token->token_type, $this->token->access_token)
             ];
         }
 
         $url = sprintf('%s%s', (string) self::BASE_URL, $path);
 
-        $response = Request::get($url)
+        $this->response = Request::get($url)
             ->addHeaders($headers)
             ->sendsType(\Httpful\Mime::FORM)
             ->expectsJson()
             ->send();
 
-        return $response->body;
+        return $this;
     }
 
     /**
@@ -79,30 +83,47 @@ class Roaring
      * @param  array  $body
      * @return stdClass
      */
-    public function post(string $path, array $headers = [], array $body = [])
+    public function post(string $path, array $headers = [], array $body = []) : Roaring
     {
         if ($this->token) {
             $headers += [
-                'Authorization' => sprintf('Bearer %s', $this->token->access_token)
+                'Authorization' => sprintf('%s %s', $this->token->token_type, $this->token->access_token)
             ];
         }
 
         $url = sprintf('%s%s', (string) self::BASE_URL, $path);
 
-        $response = Request::post($url)
+        $this->response = Request::post($url)
             ->addHeaders($headers)
             ->sendsType(\Httpful\Mime::FORM)
             ->body($body)
             ->send();
 
-        return $response->body;
+        return $this;
+    }
+
+    /**
+     * Retrive the response from the last request
+     * @param  string $type
+     * @return mixed
+     */
+    public function getResponse(string $type = null)
+    {
+        if ($this->response) {
+            if ($type) {
+                return $this->response->{$type};
+            }
+            return $this->response;
+        }
+
+        throw new \Exception("No response available", 1);
     }
 
     /**
      * Predifined setup to retrieve a token
      * @return stdClass
      */
-    private function getToken()
+    private function token() : \stdClass
     {
         $headers = [
             'Cache-Control' => 'no-cache',
@@ -114,8 +135,6 @@ class Roaring
             'grant_type' => 'client_credentials'
         ];
 
-        $response = $this->post('/token', $headers, $parameters);
-
-        return $response;
+        return $this->post('/token', $headers, $parameters)->getResponse('body');
     }
 }
