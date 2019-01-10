@@ -1,6 +1,6 @@
 {
     "name": "olssonm/roaring",
-    "description": "Roaring.io API",
+    "description": "Roaring.io API-wrapper",
     "homepage": "https://github.com/olssonm/roaring",
     "license": "MIT",
     "authors": [
@@ -12,7 +12,7 @@
     ],
     "require": {
         "php" : ">=7.1",
-        "mashape/unirest-php": "3.*"
+        "nategood/httpful": "^0.2.20"
     },
     "require-dev": {
         "phpunit/phpunit" : "^7.0"
@@ -36,7 +36,7 @@
         },
         "laravel": {
             "providers": [
-                "Olssonm\\Scrive\\ScriveServiceProvider"
+                "Olssonm\\Roaring\\ServiceProvider"
             ]
         }
     },

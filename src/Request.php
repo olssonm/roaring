@@ -2,11 +2,7 @@
 
 namespace Olssonm\Roaring;
 
-use Unirest\Request as UnirestRequest;
-
 /**
- *
+ * Request-class, builds upon the Httpful-package
  */
-class Request extends UnirestRequest
-{
-}
+class Request extends \Httpful\Request {}
