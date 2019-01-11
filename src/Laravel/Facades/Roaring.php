@@ -1,6 +1,6 @@
 <?php
 
-namespace Olssonm\Roaring\Facades;
+namespace Olssonm\Roaring\Laravel\Facades;
 
 /**
  * Facade for the Roraing API when using with PHP

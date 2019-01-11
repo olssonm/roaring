@@ -13,12 +13,15 @@ class RoaringApiTests extends TestCase
 
     private $secret;
 
+    /**
+     * Setup
+     */
     public function setUp()
     {
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
 
         if (!isset($config['key']) || !isset($config['key'])) {
-            throw new \Exception("No valid test keys available. Check 'config.json'.", 1);
+            throw new \Exception("No valid test keys available for testing. Check 'config.json'.", 1);
             return;
         }
 

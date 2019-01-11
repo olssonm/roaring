@@ -1,6 +1,6 @@
 <?php
 
-namespace Olssonm\Roaring;
+namespace Olssonm\Roaring\Laravel;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

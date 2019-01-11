@@ -3,7 +3,7 @@
 namespace Olssonm\Roaring;
 
 /**
- * Main class for the Roaring API
+ * Main class for the Roaring API-wrapper
  */
 class Roaring
 {
@@ -127,7 +127,6 @@ class Roaring
     {
         $headers = [
             'Cache-Control' => 'no-cache',
-            'Content-Type' => 'application/x-www-form-urlencoded',
             'authorization' => sprintf('Basic %s', (string) base64_encode($this->key . ':' . $this->secret))
         ];
 

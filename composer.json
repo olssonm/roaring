@@ -36,7 +36,7 @@
         },
         "laravel": {
             "providers": [
-                "Olssonm\\Roaring\\ServiceProvider"
+                "Olssonm\\Roaring\\Laravel\\ServiceProvider"
             ]
         }
     },
