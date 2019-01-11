@@ -70,7 +70,6 @@ class Roaring
         $this->response = Request::get($url)
             ->addHeaders($headers)
             ->sendsType(\Httpful\Mime::FORM)
-            ->expectsJson()
             ->send();
 
         return $this;
