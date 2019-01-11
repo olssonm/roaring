@@ -34,8 +34,8 @@ For the Roaring object to initialise properly using dependancy injection, you wi
 
 ```
 'roaring' => [
-    'key' => env('ROARING_KEY', xxx),
-    'password' => env('ROARING_SECRET', zzz)
+    'key' => env('ROARING_KEY', 'xxx'),
+    'secret' => env('ROARING_SECRET', 'zzz')
 ]
 ```
 

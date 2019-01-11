@@ -45,7 +45,7 @@ class RoaringApiTests extends TestCase
         $this->assertEquals('Bearer', $token->token_type);
 
         // Retest the same reused token
-        $reusedToken = (new Roaring($this->key, $this->secret, $token))->getToken();
+        $reusedToken = (new Roaring($this->key, $this->secret))->getToken();
 
         $this->assertEquals($reusedToken->access_token, $token->access_token);
         $this->assertEquals($reusedToken->token_type, $token->token_type);
@@ -104,6 +104,7 @@ class RoaringApiTests extends TestCase
         $this->assertEquals('404', $response->code);
     }
 
+    /** @notatest **/
     private function get_token()
     {
         return (new Roaring($this->key, $this->secret))->getToken();
