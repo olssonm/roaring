@@ -28,11 +28,11 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "vendor/bin/phpunit"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.4.x-dev"
+            "dev-master": "0.1.x-dev"
         },
         "laravel": {
             "providers": [
