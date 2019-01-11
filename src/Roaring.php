@@ -42,12 +42,12 @@ class Roaring
      * @param string $key
      * @param string $secret
      */
-    public function __construct(string $key = '', string $secret = '')
+    public function __construct(string $key = '', string $secret = '', \stdClass $token = null)
     {
         $this->key = $key;
         $this->secret = $secret;
 
-        $this->token = $this->token();
+        ($token) ? $this->token = $token : $this->token = $this->generateToken();
     }
 
     /**
@@ -119,10 +119,19 @@ class Roaring
     }
 
     /**
+     * Return the generated token
+     * @return stdClass
+     */
+    public function getToken() : \stdClass
+    {
+        return $this->token;
+    }
+
+    /**
      * Predifined setup to retrieve a token
      * @return stdClass
      */
-    private function token() : \stdClass
+    private function generateToken() : \stdClass
     {
         $headers = [
             'Cache-Control' => 'no-cache',

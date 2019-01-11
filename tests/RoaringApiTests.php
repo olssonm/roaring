@@ -35,14 +35,21 @@ class RoaringApiTests extends TestCase
     /** @test **/
     public function test_token()
     {
-        $response = (new Roaring($this->key, $this->secret))->getResponse('body');
+        $token = $this->get_token();
 
-        $this->assertObjectHasAttribute('access_token', $response);
-        $this->assertObjectHasAttribute('scope', $response);
-        $this->assertObjectHasAttribute('token_type', $response);
-        $this->assertObjectHasAttribute('expires_in', $response);
+        // Test token attributes
+        $this->assertObjectHasAttribute('access_token', $token);
+        $this->assertObjectHasAttribute('scope', $token);
+        $this->assertObjectHasAttribute('token_type', $token);
+        $this->assertObjectHasAttribute('expires_in', $token);
+        $this->assertEquals('Bearer', $token->token_type);
 
-        $this->assertEquals('Bearer', $response->token_type);
+        // Retest the same reused token
+        $reusedToken = (new Roaring($this->key, $this->secret, $token))->getToken();
+
+        $this->assertEquals($reusedToken->access_token, $token->access_token);
+        $this->assertEquals($reusedToken->token_type, $token->token_type);
+        $this->assertEquals($reusedToken->scope, $token->scope);
     }
 
     /** @test **/
@@ -95,5 +102,10 @@ class RoaringApiTests extends TestCase
             ->getResponse();
 
         $this->assertEquals('404', $response->code);
+    }
+
+    private function get_token()
+    {
+        return (new Roaring($this->key, $this->secret))->getToken();
     }
 }
