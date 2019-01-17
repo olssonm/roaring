@@ -18,13 +18,6 @@ class RoaringApiTests extends TestCase
      */
     public function setUp()
     {
-        $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
-
-        if (!isset($config['key']) || !isset($config['key'])) {
-            throw new \Exception("No valid test keys available for testing. Check 'config.json'.", 1);
-            return;
-        }
-
         // If in on a travis-instance, fetch keys from the environment
         if (getenv('TRAVIS') == true && getenv('CI') == true) {
             $this->key = getenv('TRAVIS_ROARING_TEST_KEY');
@@ -32,6 +25,13 @@ class RoaringApiTests extends TestCase
         }
         // Else, read the config
         else {
+            $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
+
+            if (!isset($config['key']) || !isset($config['key'])) {
+                throw new \Exception("No valid test keys available for testing. Check 'config.json'.", 1);
+                return;
+            }
+            
             $this->key = $config['key'];
             $this->secret = $config['secret'];
         }
