@@ -1,20 +1,20 @@
 # Roaring.io API-wrapper
 
-This is a (very) simple wrapper for the roaring.io API.
+This is a (very) simple wrapper for the [roaring.io](https://www.roaring.io/en/) API.
 
-The wrapper is designed to have really no constraints in place, just create a new object with your API-keys and then call the endpoint you want to call. You are fully free to do the error-checking and data manipulation yourself.
+The wrapper is designed to be quick and easy to use – no fuzz. Just create a new object with your API-keys and then call the endpoint you want to call. Though you yourself has to do the data-manipulation to your needs and liking.
 
 The package also includes a service provider for Laravel.
 
-One a sidenote this package uses the [httpful](https://github.com/nategood/httpful)-library for the HTTP-requests. While [Guzzle](https://github.com/guzzle/guzzle) and the like may generally be preferred, it is easy to introduce conflicts in some frameworks with different versions of those libraries.
+On a sidenote; this package uses the [httpful](https://github.com/nategood/httpful)-library for the HTTP-requests. While [Guzzle](https://github.com/guzzle/guzzle) and the like may generally be recommended, it is easy to introduce conflicts in some frameworks with different versions of those more common libraries.
 
-### Requirements
+## Requirements
 
 PHP 7.1 and up (still running PHP 5.6? It is now end of life!)
 
 If you want to use the Laravel Service Provider, Laravel 5.5 and above is supported.
 
-### Installation
+## Installation
 
 ```php
 $ composer require olssonm/roaring
@@ -39,7 +39,7 @@ For the Roaring object to initialise properly using dependancy injection, you wi
 ]
 ```
 
-### Usage
+## Usage
 
 Using the wrapper is very simple – just initiate the object and call the endpoint you wish to use:
 
@@ -85,7 +85,7 @@ $response = (new Roaring('key', 'secret', $token))
 
 The returned object is always of the type `stdClass` (internally httpful just unpacks the returned JSON to setup the object).
 
-With `getResponse()` you will recieve the entire response, you may also for example use `getResponse('body')` to only retrieve the `body`, `getResponse('code')` to get the `code`-parameter and so on.
+With `getResponse()` you will recieve the entire response, you may also for example use `getResponse('body')` to only retrieve the `body`, `getResponse('code')` to get the `code`-attribute and so on.
 
 ## Testing
 

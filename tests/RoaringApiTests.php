@@ -25,9 +25,16 @@ class RoaringApiTests extends TestCase
             return;
         }
 
-        // Load the configuration
-        $this->key = $config['key'];
-        $this->secret = $config['secret'];
+        // If in on a travis-instance, fetch keys from the environment
+        if (getenv('TRAVIS') == true && getenv('CI') == true) {
+            $this->key = getenv('TRAVIS_ROARING_TEST_KEY');
+            $this->secret = getenv('TRAVIS_ROARING_TEST_SECRET');
+        }
+        // Else, read the config
+        else {
+            $this->key = $config['key'];
+            $this->secret = $config['secret'];
+        }
 
         parent::setUp();
     }
