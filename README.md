@@ -1,5 +1,11 @@
 # Roaring.io API-wrapper
 
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Total downloads][ico-downloads]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+[![Scrutinizer Score][ico-scrutinizer]][link-scrutinizer]
+
 This is a (very) simple wrapper for the [roaring.io](https://www.roaring.io/en/) API.
 
 The wrapper is designed to be quick and easy to use – no fuzz. Just create a new object with your API-keys and then call the endpoint you want to call. Though you yourself has to do the data-manipulation to your needs and liking.
@@ -106,3 +112,11 @@ $ phpunit
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 © 2019 [Marcus Olsson](https://marcusolsson.me).
+
+[ico-version]: https://img.shields.io/packagist/v/olssonm/roaring.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/olssonm/roaring/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/g/olssonm/roaring.svg?style=flat-square
+[link-packagist]: https://packagist.org/packages/olssonm/roaring
+[link-travis]: https://travis-ci.org/olssonm/roaring
+[link-scrutinizer]: https://scrutinizer-ci.com/g/olssonm/roaring
