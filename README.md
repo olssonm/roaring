@@ -1,7 +1,6 @@
 # Roaring.io API-wrapper
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total downloads][ico-downloads]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Scrutinizer Score][ico-scrutinizer]][link-scrutinizer]
