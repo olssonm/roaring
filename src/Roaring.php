@@ -55,7 +55,7 @@ class Roaring
      * @param  string $path
      * @param  array  $headers
      * @param  array  $parameters
-     * @return stdClass
+     * @return Roaring
      */
     public function get(string $path, array $headers = [], array $parameters = []) : Roaring
     {
@@ -80,7 +80,7 @@ class Roaring
      * @param  string $path
      * @param  array  $headers
      * @param  array  $body
-     * @return stdClass
+     * @return Roaring
      */
     public function post(string $path, array $headers = [], array $body = []) : Roaring
     {
