@@ -16,7 +16,7 @@ class RoaringApiTests extends TestCase
     /**
      * Setup
      */
-    public function setUp()
+    public function setUp(): void
     {
         // If in on a travis-instance, fetch keys from the environment
         if (getenv('TRAVIS') == true && getenv('CI') == true) {
@@ -31,7 +31,7 @@ class RoaringApiTests extends TestCase
                 throw new \Exception("No valid test keys available for testing. Check 'config.json'.", 1);
                 return;
             }
-            
+
             $this->key = $config['key'];
             $this->secret = $config['secret'];
         }

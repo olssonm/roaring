@@ -1,3 +1,4 @@
 /vendor
 /tests/config.json
 composer.lock
+/.phpunit.result.cache
