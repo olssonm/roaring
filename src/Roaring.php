@@ -9,42 +9,42 @@ class Roaring
 {
     /**
      * The fetched token
-     * 
+     *
      * @var \stdClass
      */
     private $token;
 
     /**
      * API consumer key
-     * 
+     *
      * @var string
      */
     private $key;
 
     /**
      * API consumer secret
-     * 
+     *
      * @var string
      */
     private $secret;
 
     /**
      * The last response
-     * 
+     *
      * @var mixed
      */
     private $response;
 
     /**
      * Base URL for the API
-     * 
+     *
      * @var string
      */
     private const BASE_URL = 'https://api.roaring.io';
 
     /**
      * Constructor
-     * 
+     *
      * @param string $key
      * @param string $secret
      */
@@ -58,7 +58,7 @@ class Roaring
 
     /**
      * Make a GET-request
-     * 
+     *
      * @param  string $path
      * @param  array  $headers
      * @param  array  $parameters
@@ -84,7 +84,7 @@ class Roaring
 
     /**
      * Make a POST-request
-     * 
+     *
      * @param  string $path
      * @param  array  $headers
      * @param  array  $body
@@ -111,7 +111,7 @@ class Roaring
 
     /**
      * Retrive the response from the last request
-     * 
+     *
      * @param  string $type
      * @return mixed
      */
@@ -129,8 +129,8 @@ class Roaring
 
     /**
      * Return the generated token
-     * 
-     * @return stdClass
+     *
+     * @return \stdClass
      */
     public function getToken(): \stdClass
     {
@@ -139,8 +139,8 @@ class Roaring
 
     /**
      * Predifined setup to retrieve a token
-     * 
-     * @return stdClass
+     *
+     * @return \stdClass
      */
     private function generateToken(): \stdClass
     {
