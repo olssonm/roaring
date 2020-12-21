@@ -87,8 +87,8 @@ class RoaringApiTests extends TestCase
         $response = (new Roaring($this->key, $this->secret))
             ->get('/se/company/signing-combinations/1.0/combinations/556716-4812')
             ->getResponse();
-
-        $this->assertEquals('404', $response->code);
+        
+        $this->assertEquals('400', $response->code);
     }
 
     /** @test **/

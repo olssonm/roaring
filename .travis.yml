@@ -3,7 +3,7 @@ language: php
 sudo: false
 
 before_script:
-  - travis_retry composer self-update
+  - travis_retry composer self-update --2
   - travis_retry composer install
 
 script:
@@ -11,5 +11,6 @@ script:
 
 matrix:
   include:
-    - php: 7.2
     - php: 7.3
+    - php: 7.4
+    - php: 8.0
