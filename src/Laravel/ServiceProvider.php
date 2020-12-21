@@ -8,11 +8,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * Register any package services.
+     *
      * @return void
      */
     public function register()
     {
-        $this->app->bind('Roaring', function ($app) {
+        $this->app->bind('roaring', function ($app) {
             return new Roaring(config('services.roaring.key'), config('services.roaring.secret'));
         });
     }
@@ -24,6 +25,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function provides()
     {
-        return ['Roaring'];
+        return ['roaring'];
     }
 }

@@ -15,7 +15,7 @@ On a sidenote; this package uses the [httpful](https://github.com/nategood/httpf
 
 ## Requirements
 
-PHP 7.1 and up (still running PHP 5.6? It is now end of life!)
+PHP >=7.3 / ^8.0
 
 If you want to use the Laravel Service Provider, Laravel 5.5 and above is supported.
 
@@ -35,7 +35,15 @@ Laravel should auto-discover the service provider. You may also manually add it 
 ]
 ```
 
-For the Roaring object to initialise properly using dependancy injection, you will need to set your key and secret in `/config/services.php`:
+You may set an alias using the facade in `config/app.php`:
+
+```php
+'aliases' => [
+    'Roaring' => Olssonm\Roaring\Laravel\Facades\Roaring::class
+]
+```
+
+For the Roaring object to initialise properly using dependancy injection/the facade, you will need to set your key and secret in `/config/services.php`:
 
 ```
 'roaring' => [
@@ -46,13 +54,24 @@ For the Roaring object to initialise properly using dependancy injection, you wi
 
 ## Usage
 
-Using the wrapper is very simple – just initiate the object and call the endpoint you wish to use:
+Using the wrapper is very simple – just initiate the object and call the endpoint you wish to use.
+
+Used standalone/via main class:
 
 ```php
 use \Olssonm\Roaring\Roaring;
 
 $response = (new Roaring('key', 'secret'))
     ->get('/se/company/overview/1.1/5567164818')
+    ->getResponse();
+```
+
+Via the Laravel facade/dependancy injection:
+
+```php
+use Roaring;
+
+$response = Roaring::get('/se/company/overview/1.1/5567164818')
     ->getResponse();
 ```
 
@@ -110,7 +129,7 @@ $ phpunit
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-© 2019 [Marcus Olsson](https://marcusolsson.me).
+© 2020 [Marcus Olsson](https://marcusolsson.me).
 
 [ico-version]: https://img.shields.io/packagist/v/olssonm/roaring.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
