@@ -5,7 +5,7 @@ namespace Olssonm\Roaring\Laravel\Facades;
 /**
  * Facade for the Roraing API when using with PHP
  */
-class RoaringFacade extends \Illuminate\Support\Facades\Facade
+class Roaring extends \Illuminate\Support\Facades\Facade
 {
     /**
      * Get the registered name of the component.
@@ -14,6 +14,6 @@ class RoaringFacade extends \Illuminate\Support\Facades\Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Roaring';
+        return 'roaring';
     }
 }
