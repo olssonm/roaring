@@ -10,7 +10,7 @@ class Roaring
     /**
      * The fetched token
      * 
-     * @var stdClass
+     * @var \stdClass
      */
     private $token;
 
