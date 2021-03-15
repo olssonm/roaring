@@ -29,11 +29,13 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "phpsniff": "vendor/bin/phpcs --standard=\"PSR12\" ./src",
+        "phpfix": "vendor/bin/phpcbf --standard=\"PSR12\" ./src"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.x-dev"
+            "dev-master": "2.x-dev"
         },
         "laravel": {
             "providers": [

@@ -71,7 +71,7 @@ class RoaringApiTests extends TestCase
     }
 
     /** @test **/
-    public function test_basic_signing_combination()
+    public function test_basic_signing_combination_1_0()
     {
         $response = (new Roaring($this->key, $this->secret))
             ->get('/se/company/signing-combinations/1.0/combinations/556716-4818')
@@ -82,23 +82,89 @@ class RoaringApiTests extends TestCase
     }
 
     /** @test **/
-    public function test_failed_signing_combination()
+    public function test_failed_signing_combination_1_0()
     {
         $response = (new Roaring($this->key, $this->secret))
             ->get('/se/company/signing-combinations/1.0/combinations/556716-4812')
             ->getResponse();
-        
+
         $this->assertEquals('400', $response->code);
     }
 
     /** @test **/
-    public function test_bad_signing_combination()
+    public function test_bad_signing_combination_1_0()
     {
         $response = (new Roaring($this->key, $this->secret))
             ->get('/se/company/signing-combinations/1.0/combinations/556903-0264')
             ->getResponse();
 
         $this->assertEquals('404', $response->code);
+    }
+
+    /** @test **/
+    public function test_basic_signing_combination_2_0()
+    {
+        $response = (new Roaring($this->key, $this->secret))
+            ->get('/se/company/signing-combinations/2.0/556486-6803')
+            ->getResponse();
+
+        $this->assertEquals('200', $response->code);
+        $this->assertEquals('Efternamn2401, Petra', $response->body->records[0]->combinations[0][0]->name);
+    }
+
+    /** @test **/
+    public function test_failed_signing_combination_2_0()
+    {
+        $response = (new Roaring($this->key, $this->secret))
+            ->get('/se/company/signing-combinations/2.0/556716-4812')
+            ->getResponse();
+
+        $this->assertEquals('400', $response->code);
+    }
+
+    /** @test **/
+    public function test_bad_signing_combination_2_0()
+    {
+        $response = (new Roaring($this->key, $this->secret))
+            ->get('/se/company/signing-combinations/2.0/010101-3050')
+            ->getResponse();
+
+        $this->assertEquals('200', $response->code);
+        $this->assertEquals(1, $response->body->status->code); // "1" indicates not found
+        $this->assertEquals('records not found', $response->body->status->text);
+    }
+
+    /** @test */
+    public function test_danish_signing_combination()
+    {
+        $response = (new Roaring($this->key, $this->secret))
+            ->get('/dk/company/signing-combinations/1.0/12345674')
+            ->getResponse();
+
+        $this->assertEquals('200', $response->code);
+        $this->assertEquals('Juana Lampard', $response->body->records[0]->combinations[0][0]->fullName);
+    }
+
+    /** @test */
+    public function test_finnish_signing_combination()
+    {
+        $response = (new Roaring($this->key, $this->secret))
+            ->get('/fi/company/signing-combinations/1.0/2292844-0')
+            ->getResponse();
+
+        $this->assertEquals('200', $response->code);
+        $this->assertEquals('Lars Anders', $response->body->records[0]->combinations[0][0]->firstname);
+    }
+
+    /** @test */
+    public function test_norwegian_signing_combination()
+    {
+        $response = (new Roaring($this->key, $this->secret))
+            ->get('/no/company/signing-combinations/2.0/810059672')
+            ->getResponse();
+
+        $this->assertEquals('200', $response->code);
+        $this->assertEquals('Bror Johansen', $response->body->records[0]->combinations[0][0]->name);
     }
 
     /** @test **/
