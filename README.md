@@ -3,6 +3,7 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
+[![Software License][ico-php]][link-packagist]
 [![Scrutinizer Score][ico-scrutinizer]][link-scrutinizer]
 
 This is a (very) simple wrapper for the [roaring.io](https://www.roaring.io/en/) API.
@@ -15,7 +16,7 @@ On a sidenote; this package uses the [httpful](https://github.com/nategood/httpf
 
 ## Requirements
 
-PHP >=7.3 / ^8.0
+PHP ^7.3 / ^8.0
 
 If you want to use the Laravel Service Provider, Laravel 5.5 and above is supported.
 
@@ -135,6 +136,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/olssonm/roaring/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/g/olssonm/roaring.svg?style=flat-square
+[ico-php]: https://img.shields.io/packagist/php-v/olssonm/roaring.svg?style=flat-square
 [link-packagist]: https://packagist.org/packages/olssonm/roaring
 [link-travis]: https://travis-ci.org/olssonm/roaring
 [link-scrutinizer]: https://scrutinizer-ci.com/g/olssonm/roaring

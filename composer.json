@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php" : ">=7.3 | ^8.0",
+        "php" : "^7.3 | ^8.0",
         "nategood/httpful": "^0.3.2"
     },
     "require-dev": {
