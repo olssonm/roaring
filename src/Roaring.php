@@ -48,7 +48,7 @@ class Roaring
      * @param string $key
      * @param string $secret
      */
-    public function __construct(string $key = '', string $secret = '', \stdClass $token = null)
+    public function __construct(string $key = '', string $secret = '', ?\stdClass $token = null)
     {
         $this->key = $key;
         $this->secret = $secret;
@@ -72,7 +72,7 @@ class Roaring
             ];
         }
 
-        $url = sprintf('%s%s', (string) self::BASE_URL, $path);
+        $url = sprintf('%s%s', self::BASE_URL, $path);
 
         $this->response = Request::get($url)
             ->addHeaders($headers)
@@ -98,7 +98,7 @@ class Roaring
             ];
         }
 
-        $url = sprintf('%s%s', (string) self::BASE_URL, $path);
+        $url = sprintf('%s%s', self::BASE_URL, $path);
 
         $this->response = Request::post($url)
             ->addHeaders($headers)
@@ -146,7 +146,7 @@ class Roaring
     {
         $headers = [
             'Cache-Control' => 'no-cache',
-            'authorization' => sprintf('Basic %s', (string) base64_encode($this->key . ':' . $this->secret))
+            'authorization' => sprintf('Basic %s', base64_encode($this->key . ':' . $this->secret))
         ];
 
         $parameters = [
