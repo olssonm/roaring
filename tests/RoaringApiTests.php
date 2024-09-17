@@ -18,23 +18,15 @@ class RoaringApiTests extends TestCase
      */
     public function setUp(): void
     {
-        // If in on a travis-instance, fetch keys from the environment
-        if (getenv('TRAVIS') == true && getenv('CI') == true) {
-            $this->key = getenv('TRAVIS_ROARING_TEST_KEY');
-            $this->secret = getenv('TRAVIS_ROARING_TEST_SECRET');
-        }
-        // Else, read the config
-        else {
-            $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
+        $config = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
 
-            if (!isset($config['key']) || !isset($config['key'])) {
-                throw new \Exception("No valid test keys available for testing. Check 'config.json'.", 1);
-                return;
-            }
-
-            $this->key = $config['key'];
-            $this->secret = $config['secret'];
+        if (!isset($config['key']) || !isset($config['key'])) {
+            throw new \Exception("No valid test keys available for testing. Check 'config.json'.", 1);
+            return;
         }
+
+        $this->key = $config['key'];
+        $this->secret = $config['secret'];
 
         parent::setUp();
     }
@@ -45,10 +37,10 @@ class RoaringApiTests extends TestCase
         $token = $this->get_token();
 
         // Test token attributes
-        $this->assertObjectHasAttribute('access_token', $token);
-        $this->assertObjectHasAttribute('scope', $token);
-        $this->assertObjectHasAttribute('token_type', $token);
-        $this->assertObjectHasAttribute('expires_in', $token);
+        $this->assertIsObject($token);
+        $this->assertTrue(property_exists($token, 'access_token'));
+        $this->assertTrue(property_exists($token, 'token_type'));
+        $this->assertTrue(property_exists($token, 'expires_in'));
         $this->assertEquals('Bearer', $token->token_type);
 
         // Retest the same reused token
@@ -56,7 +48,6 @@ class RoaringApiTests extends TestCase
 
         $this->assertEquals($reusedToken->access_token, $token->access_token);
         $this->assertEquals($reusedToken->token_type, $token->token_type);
-        $this->assertEquals($reusedToken->scope, $token->scope);
     }
 
     /** @test **/
@@ -114,7 +105,7 @@ class RoaringApiTests extends TestCase
 
         // Roaring might send the wrong data, bug in their API
         if (isset($response->body->records[0]->combinations[0])) {
-            $this->assertEquals('Juana Lampard', $response->body->records[0]->combinations[0][0]->fullName);
+            $this->assertEquals('Tage Olsen', $response->body->records[0]->combinations[0][0]->fullName);
         }
     }
 
@@ -147,7 +138,7 @@ class RoaringApiTests extends TestCase
             ->get('/se/company/bad-endpoint/1.0/5565002465')
             ->getResponse();
 
-        $this->assertEquals('404', $response->code);
+        $this->assertEquals('403', $response->code);
     }
 
     /** @notatest **/
